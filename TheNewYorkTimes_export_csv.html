@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet" />
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
+</head>
+<style>
+  li {
+    list-style: none;
+  }
+
+  .main {
+    width: 70%;
+  }
+
+  .card {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .card__media {
+    margin: 15px;
+  }
+
+  .article1 {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+  }
+
+  .article2 {
+    border-left: 1px solid black;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container class="main">
+          <!-- menu -> toolbar-->
+          <v-layout>
+            <v-flex text-xs-left>
+              <v-btn flat>
+                <v-icon>menu</v-icon>SECTIONS
+              </v-btn>
+              <v-btn flat>
+                <v-icon>search</v-icon>SEARCH
+              </v-btn>
+              <input type="file" placeholder="Charger un fichier" @change="processFile($event)" />
+            </v-flex>
+            <v-spacer></v-spacer>
+            <v-flex text-xs-right>
+              <v-btn color="green" @click="generateCSV()">CSV</v-btn>
+              <v-btn color="info">SUBSCRIBE NOW</v-btn>
+              <v-btn color="info">LOGIN</v-btn>
+              <v-icon>fas fa-cogs</v-icon>
+            </v-flex>
+          </v-layout>
+          <v-layout justify-center>
+            <v-flex>
+              contenu:
+              {{ contenu }}
+            </v-flex>
+          </v-layout>
+
+          <!--The new york times-->
+          <v-layout column text-xs-center>
+            <v-flex text-xs-center>
+              <ul>
+                <v-layout justify-center>
+                  <v-flex xs1>
+                    <li>ENGLISH</li>
+                  </v-flex>
+                  <v-flex xs1>
+                    <li>CHINESE</li>
+                  </v-flex>
+                  <v-flex xs1>
+                    <li>ESPAÑOL</li>
+                  </v-flex>
+                </v-layout>
+                <hr />
+              </ul>
+            </v-flex>
+
+            <v-flex>
+              <image width="379" height="64"
+                xlink:href="https://g1.nyt.com/assets/homepage/20180523-141049/images/foundation/logos/nyt-logo-379x64.svg"
+                src="https://g1.nyt.com/assets/homepage/20180523-141049/images/foundation/logos/nyt-logo-379x64.png"
+                alt="The New York Times" border="0"></image>
+            </v-flex>
+
+            <v-flex justify-center>
+              <ul>
+                <v-layout>
+                  <v-flex>
+                    <li>Saturday, May 26, 2018</li>
+                  </v-flex>
+                  <v-flex>
+                    <li>Today’s Paper</li>
+                  </v-flex>
+                  <v-flex>
+                    <li>Video</li>
+                  </v-flex>
+                  <v-flex>
+                    <li>87°F</li>
+                  </v-flex>
+                  <v-flex>
+                    <li>Dow -0.24%</li>
+                  </v-flex>
+                </v-layout>
+              </ul>
+            </v-flex>
+
+            <!-- nav bar -->
+            <hr />
+            <v-layout>
+              <v-flex text-xs-center>
+                <ul>
+                  <v-layout justify-center mx-3>
+                    <v-flex xs1>
+                      <li>world</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>US</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>Politics</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>N.Y</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>Business</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>tech</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                    <v-flex xs1>
+                      <li>etc.</li>
+                    </v-flex>
+                  </v-layout>
+                </ul>
+              </v-flex>
+            </v-layout>
+          </v-layout>
+
+          <!--articles-->
+          <hr />
+          <v-layout justify-center>
+            <v-flex xs2>
+              <v-flex class="">
+                <v-card-title class="headline">Democrats Go All-Out to Avoid Disaster in California
+                  Races</v-card-title>
+                <v-card-text>ab distinguantur elit iis elit dolor ita officia expetendis
+                  summis o laborum arbitror multos doctrina ut aliquip nulla
+                  incurreret de o exercitation ut hic ut admodum admodum ipsum
+                  aut multos nulla culpa familiaritatem officia varias
+                </v-card-text>
+              </v-flex>
+              <hr />
+            </v-flex>
+
+            <v-flex xs5>
+              <v-layout>
+                <v-flex class="article1 my-2">
+                  <v-img mx-5
+                    src="https://static01.nyt.com/images/2018/05/26/world/europe/27ireland-hp-slide-USH7/27ireland-hp-slide-USH7-largeHorizontal375.jpg"
+                    height="200px"></v-img>
+                  <v-card-title>laboris doctrina aliquip arbitror admodum</v-card-title>
+                  <v-card-text>despicationes cupidatat coniunctione a e domesticarum
+                    litteris sed ut hic malis aut tamen e elit id consequat
+                    singulis duis nam aute legam laboris ita tractavissent
+                    offendit ullamco coniunctione ea cupidatat nescius minim
+                    coniunctione admodum aute</v-card-text>
+                </v-flex>
+              </v-layout>
+              <hr />
+            </v-flex>
+
+            <v-flex xs5>
+              <v-layout>
+                <v-flex>
+                  <v-card-title>laboris doctrina aliquip arbitror admodum</v-card-title>
+                  <v-card-text>despicationes cupidatat coniunctione a e domesticarum
+                    litteris sed ut hic malis aut tamen e elit id consequat
+                    singulis duis nam aute legam laboris ita tractavissent
+                    offendit ullamco coniunctione ea cupidatat nescius minim
+                    coniunctione admodum aute</v-card-text>
+                </v-flex>
+
+                <v-flex class="article2 my-2">
+                  <v-img
+                    src="https://static01.nyt.com/images/2018/05/27/opinion/sunday/27stager/27stager-mediumFlexible177.jpg"
+                    height="100px" width="100px"></v-img>
+                  <v-card-title>laboris doctrina aliquip arbitror admodum</v-card-title>
+                  <v-card-text>despicationes cupidatat coniunctione a e domesticarum
+                    litteris sed ut hic malis aut tamen e elit id consequat
+                    singulis duis nam aute legam laboris ita tractavissent
+                    offendit ullamco coniunctione ea cupidatat nescius minim
+                    coniunctione admodum aute</v-card-text>
+                </v-flex>
+              </v-layout>
+              <hr class="scotch-rule" />
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script>
+    let vm = new Vue({
+      el: "#app",
+      data() {
+        return {
+          someData: null,
+          contenu: null,
+          fileinput: null,
+          fileLines: [],
+          fileOccs: null,
+          fileArray: [],
+          real: {
+            cols: ["EXER", "CHFS", "FOURN", "NOMACHAT", "LIQ"],
+            data: [
+              [2019, 0, "100.0801439273", "100.3244744081", 4578],
+              [2018, 0, "99.95755541", "99.8403384848", 25612],
+              [2019, 2, "100.0823145888", "100.0164561688", 53818],
+              [2019, 0, "99.9251406241", "99.7573625545", 7773],
+              [2018, 1, "99.8100482847", "99.7013198256", 47612],
+              [2019, 0, "99.9991693537", "100.0791568402", 77790],
+              [2018, 2, "100.3088306034", "100.1750665425", 22520],
+              [2017, 0, "100.0963237844", "99.8672141619", 95148],
+              [2019, 0, "100.291250798", "100.1004776194", 40301],
+              [2019, 0, "99.8191441805", "100.7369069083", 19342],
+              [2017, 0, "100.0610853415", "99.9827079861", 49305],
+              [2019, 2, "100.4728290388", "100.1208000903", 70025],
+              [2018, 1, "99.8116602906", "99.972358319", 27265],
+              [2019, 1, "99.9770232923", "100.0609208027", 92705],
+              [2018, 1, "100.1256431293", "100.0884659237", 91418],
+              [2017, 1, "99.7662088523", "99.9471274968", 19912],
+              [2019, 2, "100.3999832374", "100.0401451445", 27878],
+              [2019, 1, "99.9356945413", "99.5033638863", 60453],
+              [2019, 1, "99.9743847562", "100.0089671793", 76],
+              [2019, 1, "99.9306249305", "99.8405380202", 51479],
+              [2017, 1, "99.8968942717", "99.7650020674", 99164],
+              [2017, 0, "100.424724762", "100.1584667629", 21641],
+              [2019, 1, "99.9508982288", "100.0920949226", 51475],
+              [2018, 0, "99.7425580957", "99.7473372648", 52972],
+              [2017, 0, "99.4077167075", "99.9524437469", 39524],
+              [2019, 0, "99.9237210134", "99.6833179779", 66932],
+              [2019, 1, "100.0841785113", "99.7896233427", 5342],
+              [2018, 1, "99.7581711339", "100.1444743309", 18856],
+              [2017, 1, "100.1454066116", "100.0506179629", 78535],
+              [2018, 0, "99.9495956669", "100.4355245908", 44160],
+              [2018, 0, "99.8152765949", "99.7832393201", 10486],
+              [2019, 0, "100.3976052249", "99.7584017889", 78758],
+              [2019, 1, "100.0619825267", "100.1444746987", 79177],
+              [2018, 1, "100.0743838463", "99.9615854338", 95274],
+              [2017, 2, "99.8392460843", "99.6831866307", 77183],
+              [2018, 0, "100.1375997948", "99.6644871938", 33748],
+              [2019, 0, "99.5617285509", "100.2134985332", 58673],
+              [2017, 2, "99.7576082596", "100.1270510279", 94932],
+              [2018, 1, "100.0445238824", "99.7237963135", 89523],
+              [2017, 0, "100.1176434645", "100.2232581505", 81638],
+              [2018, 1, "99.8509746689", "99.9244069268", 94373],
+              [2017, 1, "100.2272060396", "100.0830678973", 48280],
+              [2018, 2, "100.0534802802", "99.8965285118", 26749],
+              [2017, 2, "99.890005704", "100.1741700829", 78046],
+              [2019, 2, "99.9088387382", "100.1218846098", 16097],
+              [2018, 0, "100.0481699295", "99.7970423409", 30940],
+              [2017, 2, "99.8819837643", "100.0989691392", 99902],
+              [2017, 0, "100.2161481526", "100.5412329572", 63225],
+              [2018, 0, "100.4684651381", "100.0544180035", 68683],
+              [2017, 0, "100.3950295746", "100.1787091531", 57034],
+              [2018, 1, "100.0120055257", "100.0985306454", 83467],
+              [2017, 1, "100.1975306017", "100.0487793591", 43673],
+              [2018, 0, "99.8492611088", "99.7944587112", 9970],
+              [2019, 0, "100.3732747111", "100.0422419319", 7980],
+              [2017, 1, "100.262171173", "100.2225822035", 71590],
+              [2018, 0, "100.0246115947", "100.060552511", 3845],
+              [2018, 2, "100.0889905048", "100.4900306094", 49599],
+              [2018, 0, "99.8635861991", "100.1433738159", 35610],
+              [2019, 0, "99.6912295693", "99.9868297192", 91643],
+              [2017, 2, "99.7920914177", "100.0152593171", 6598],
+              [2019, 1, "99.7258078837", "99.9568535564", 59350],
+              [2017, 1, "100.0314066536", "100.1752242992", 37213],
+              [2017, 1, "100.4240110524", "99.9104588711", 36163],
+              [2018, 1, "99.6227928298", "99.7957440627", 62615],
+              [2019, 1, "100.1157740567", "99.9754808795", 65361],
+              [2018, 0, "100.2317674377", "99.6026134724", 48927],
+              [2019, 0, "99.6822635824", "99.8827190107", 59638],
+              [2018, 2, "100.2123789552", "99.7448059597", 16265],
+              [2018, 0, "100.5712006176", "100.0914488982", 58482],
+              [2017, 1, "99.6010418675", "99.8877022993", 38513],
+              [2017, 1, "99.8250805608", "100.4484552552", 16634],
+              [2019, 0, "99.660908512", "100.6066739754", 97005],
+              [2019, 1, "99.4446374111", "99.5894248778", 46647],
+              [2019, 1, "99.9756815418", "99.742968134", 83970],
+              [2019, 0, "100.0466756707", "100.1569187771", 22024],
+              [2019, 0, "100.0592567059", "99.9767716112", 23445],
+              [2019, 0, "100.1103732834", "100.6094185694", 22554],
+              [2017, 0, "100.3223212238", "100.0252039961", 24922],
+              [2018, 0, "99.9932299305", "100.0086193525", 50286],
+              [2019, 2, "100.07811579", "99.4298720736", 68022],
+              [2017, 1, "100.1078174236", "99.9801085829", 57852],
+              [2019, 2, "100.1636494366", "99.7110741433", 8464],
+              [2018, 2, "100.0999966042", "100.160413804", 92520],
+              [2017, 2, "100.0997169242", "100.2541305232", 1961],
+              [2019, 1, "100.3203690464", "99.6363091079", 65656],
+              [2017, 1, "99.7340459434", "99.8904130364", 51097],
+              [2018, 0, "100.3601726642", "99.7315693051", 63106],
+              [2019, 2, "100.200770305", "100.0736038989", 19737],
+              [2018, 1, "100.0097207177", "100.0940277657", 65671],
+              [2018, 1, "99.945317027", "99.996232421", 97722],
+              [2018, 0, "100.7136394084", "100.1956603561", 95554],
+              [2018, 2, "99.7515078234", "100.0786472704", 61553],
+              [2019, 2, "100.2067778485", "99.9558367685", 53784],
+              [2019, 2, "100.2217620623", "99.8683414286", 16801],
+              [2017, 0, "100.2364910574", "99.796009569", 7481],
+              [2019, 0, "100.3359786438", "99.9956722079", 26344],
+              [2018, 0, "99.6622112367", "99.7226707468", 72694],
+              [2017, 0, "100.0288868098", "99.741433622", 1288],
+              [2018, 0, "99.7126330655", "99.9878676127", 8756],
+              [2017, 0, "99.9827966858", "100.0259747372", 26771]
+            ]
+          }
+        };
+      },
+      methods: {
+        generateCSV() {
+          // this.real.cols; // EXER, CHFS etc..
+          // Object.keys(this.real.cols); // 0, 1 etc..
+
+          // Création d'une table d'index
+          let indVar = [];
+          for (var i = 0; i < this.real.cols.length; i++) {
+            indVar[this.real.cols[i]] = parseInt(
+              Object.keys(this.real.cols)[i]
+            );
+          }
+
+          //selection CHFS=0 et EXER = 2019
+          //filter permet de choisir
+          let block1 = this.real.data.filter(
+            e =>
+            e[indVar["CHFS"]] == 0 &&
+            e[indVar["EXER"]] === 2019 &&
+            parseInt(e[indVar["FOURN"]].substr(0, 3)) === 100
+          );
+
+          let block2 = this.real.data.filter(
+            e => e[indVar["CHFS"]] == 0 && e[indVar["EXER"]] === 2019
+          );
+
+          //Reduce permet de sommer
+          let block1Res = block1.reduce(
+            (a, b) => a + parseInt(b[indVar["LIQ"]]),
+            0
+          );
+          let block2Res = block2.reduce(
+            (a, b) => a + parseInt(b[indVar["LIQ"]]),
+            0
+          );
+
+          console.log(block1);
+          console.log(block2);
+          //ajout de block2 en bas de block 1
+          block2.forEach(e => block1.push(e))
+
+          block1.forEach(e => block2.forEach(e2
+
+          ))
+          console.log(block1);
+          this.jsonToCsv2(block1);
+          console.log("end");
+        },
+        processFile(event) {
+          this.someData = event.target.files[0];
+          // console.log("processFile: ", this.someData);
+          var charge = new FileReader();
+
+          charge.readAsText(this.someData);
+
+          charge.onloadend = e => {
+            e.target.result;
+            this.contenu = e.target.result;
+            this.fileLines = this.contenu.split("\n");
+            var i = 0;
+            var tempArray = [];
+            var tempArray2 = [];
+            this.fileLines.map(ligne => {
+              tempArray = ligne.split(";");
+              tempArray2.push(tempArray);
+            });
+            this.fileOccs = tempArray2;
+            this.fileArray = this.convertArrayOfObjectsToCSV({
+              data: this.fileOccs
+            });
+          };
+        },
+        convertArrayOfObjectsToCSV(args) {
+          console.log("convertArrayOfObjectsToCSV");
+
+          var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+
+          data = args || null;
+          if (data == null || !data.length) {
+            return null;
+          }
+
+          columnDelimiter = args.columnDelimiter || ";";
+          lineDelimiter = args.lineDelimiter || "\n";
+
+          keys = Object.keys(data[0]);
+
+          result = "";
+          result += keys.join(columnDelimiter);
+          result += lineDelimiter;
+
+          data.forEach(function (item) {
+            ctr = 0;
+            keys.forEach(function (key) {
+              if (ctr > 0) result += columnDelimiter;
+
+              result += item[key];
+              ctr++;
+            });
+            result += lineDelimiter;
+          });
+
+          return result;
+        },
+        jsonToCsv2(args) {
+          //ajout les noms des colonnes
+          args.unshift(this.real.cols);
+          args = this.convertArrayOfObjectsToCSV(args);
+          //retirer la ligne des index 0,1,2,3 etc..
+          args = args.substr(args.indexOf("\n") + 1);
+
+          var pom = document.createElement("a");
+          var csvContent = args; //here we load our csv data
+          var blob = new Blob([csvContent], {
+            type: "text/csv;charset=utf-8;"
+          });
+          var url = URL.createObjectURL(blob);
+          pom.href = url;
+          console.log("jsonToCsv2");
+          pom.setAttribute("download", "foo.csv");
+          pom.click();
+
+          //export CSV
+          // jsonToCsv2(real.data.filter(e => e[1] == 0 && e[0] === 2019).reduce((a,
+          //     b) => a + parseInt(b[4]), 0))
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
